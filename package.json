@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/demoncowgirl/chatSurvey/issues"
   },
-  "homepage": "https://github.com/demoncowgirl/chatSurvey#readme"
+  "homepage": "https://github.com/demoncowgirl/chatSurvey#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
