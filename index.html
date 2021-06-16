@@ -10,7 +10,9 @@
 
 
 <body>
-<h2><a href="/input.html" onclick="return !window.open(this.href, 'popup', 'width=370,height=850')" target="_blank">Click here to complete survey.</a></h2>
+<div id="popup" style="margin: auto";>
+<h2><a href="/input.html" onclick="return !window.open(this.href, 'popup', 'width=370,height=850')" target="_parent">Click here to complete survey.</a></h2>
+</div>
 </body>
 <script>
   function surveyPopup(){
