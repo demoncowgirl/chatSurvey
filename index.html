@@ -176,19 +176,24 @@
       fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
         .then(res => res.text())
         .then((responseText) => {
-          const query = document.getElementById("agent-screen-home");
-          const name = query.getElementsByClassName("name")[0].textContent;
-          const email = query.getElementsByClassName("email")[0].textContent;
-          console.log(name, email);
+          //const query = document.getElementById("agent-screen-home");
+          const query = document.getElementsByClassName("message-container-agent");
+          const inner = query.getElementsByClassName("inner-container");
+          const header = inner.getElementsByClassName("message-header");
+          const name = header.getElementsByClassName("origin").textContent;
+          // const name = query.getElementsByClassName("name")[0].textContent;
+          // const email = query.getElementsByClassName("email")[0].textContent;
+          // console.log(name, email);
         })
     }
     queryHome();
 
 
-    function submitSurvey() {
+    function submitSurvey(name) {
       const form = document.getElementById('surveyform');
       var timeStamp = new Date();
-      var agentEmail = document.getElementById('agentEmail').value;
+      var name = document.getElementById('name').value;
+      // var agentEmail = document.getElementById('agentEmail').value;
       var friendliness = form.querySelector('input[name=friendliness]:checked');
       var knowledge = form.querySelector('input[name=knowledge]:checked');
       var responsiveness = form.querySelector('input[name=responsiveness]:checked');
