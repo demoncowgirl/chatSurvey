@@ -108,8 +108,8 @@
     <h4>Please rate your experience,<br>with 1=Least satisfied<br>and 5=Most satisfied</h4>
     <div class="inputForm">
       <div class="form-control">
-        <input type="hidden" id="agentEmail" value=agentEmail />
-        <!-- <input type="text" id="agentEmail" value="first.last@arvig.com" /> -->
+        <!-- <input type="hidden" id="agentEmail" value=agentEmail /> -->
+        <input type="text" id="agentEmail" value="first.last@arvig.com" />
       </div>
 
       <div class="form-control">
@@ -186,19 +186,17 @@
 
 
     function submitSurvey() {
-
-      let timeStamp = '06/15/2021'; //need to set this up to grab timestamp
-      let agentEmail = document.getElementById('agentEmail').value;
       const form = document.getElementById('surveyform');
-      let friendliness = form.querySelector('input[name=friendliness]:checked');
-      let knowledge = form.querySelector('input[name=knowledge]:checked');
-      let responsiveness = form.querySelector('input[name=responsiveness]:checked');
-      let overall = form.querySelector('input[name=overall]:checked');
+      var timeStamp = new Date();
+      var agentEmail = document.getElementById('agentEmail').value;
+      var friendliness = form.querySelector('input[name=friendliness]:checked');
+      var knowledge = form.querySelector('input[name=knowledge]:checked');
+      var responsiveness = form.querySelector('input[name=responsiveness]:checked');
+      var overall = form.querySelector('input[name=overall]:checked');
 
-      // alert(agentEmail + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
-
-
+      // alert(timeStamp + ' ' + agentEmail + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
     }
+
   </script>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
