@@ -12,6 +12,8 @@
     Arvig Chat Survey
   </title>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
   <style>
     body {
       background-color: #C1D63E;
@@ -108,8 +110,10 @@
     <h4>Please rate your experience,<br>with 1=Least satisfied<br>and 5=Most satisfied</h4>
     <div class="inputForm">
       <div class="form-control">
-        <input type="hidden" id="agentEmail" value=agentEmail />
+        <!-- <input type="hidden" id="agentEmail" value=agentEmail /> -->
         <!-- <input type="text" id="agentEmail" value="first.last@arvig.com" /> -->
+        <input type="text" id="name" value="Beth" />
+
       </div>
 
       <div class="form-control">
@@ -160,51 +164,63 @@
               </div>
             </div>
           </div>
-
-          <button id="submit" onclick="submitSurvey()" value="submit">
+          <button id="submit" onclick="surveyform()" value="submit">
             Submit
           </button>
         </div>
   </form>
 
   <script>
+
+  function form(){
+    $.ajax({
+      url:'https://sites.google.com/d/1QTTbJETfWcWmwZPqlkDA7AqrKKiLv5nE/p/1ATckXCBZ9whnjhhAtAjwgGgZ-bE8N07r/edit';
+      type: 'post';
+      data:$("#surveyform".serializeArray(),
+      success: function(){
+        alert("Survey submitted successfully. Thank you for your feedback!")
+      },
+      error: function(){
+        alert("There was an error!")
+      }
+    });
+  }
+
     // get agents email
     // var five9URL = "https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home";
-    function queryHome() {
-      var name = "";
-      var email = "";
-      fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
-        .then(res => res.text())
-        .then((responseText) => {
-          //const query = document.getElementById("agent-screen-home");
-          const query = document.getElementsByClassName("message-container-agent");
-          const inner = query.getElementsByClassName("inner-container");
-          const header = inner.getElementsByClassName("message-header");
-          const name = header.getElementsByClassName("origin").textContent;
-          // const name = query.getElementsByClassName("name")[0].textContent;
-          // const email = query.getElementsByClassName("email")[0].textContent;
-          // console.log(name, email);
-        })
-    }
-    queryHome();
+    // function queryHome() {
+    //   var name = "";
+    //   var email = "";
+    //   fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
+    //     .then(res => res.text())
+    //     .then((responseText) => {
+    //       //const query = document.getElementById("agent-screen-home");
+    //       const query = document.getElementsByClassName("message-container-agent");
+    //       const inner = query.getElementsByClassName("inner-container");
+    //       const header = inner.getElementsByClassName("message-header");
+    //       const agentName = header.getElementsByClassName("origin").textContent;
+    //       // const name = query.getElementsByClassName("name")[0].textContent;
+    //       // const email = query.getElementsByClassName("email")[0].textContent;
+    //       // console.log(name, email);
+    //     })
+    // }
+    // queryHome();
 
 
-    function submitSurvey(name) {
+    function submitSurvey(agentName) {
       const form = document.getElementById('surveyform');
       var timeStamp = new Date();
-      var name = document.getElementById('name').value;
+      var agentName = form.querySelector('input[name=agentName]');
       // var agentEmail = document.getElementById('agentEmail').value;
       var friendliness = form.querySelector('input[name=friendliness]:checked');
       var knowledge = form.querySelector('input[name=knowledge]:checked');
       var responsiveness = form.querySelector('input[name=responsiveness]:checked');
       var overall = form.querySelector('input[name=overall]:checked');
 
-      alert(timeStamp + ' ' + agentEmail + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
+      alert(timeStamp + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
     }
 
   </script>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 </body>
 
