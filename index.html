@@ -12,13 +12,18 @@
     Arvig Chat Survey
   </title>
 
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
   <style>
-    body {
+    body
+    {
       background-color: #C1D63E;
       font-family: 'Roboto', sans-serif;
       text-align: center;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     .navbar {
@@ -41,12 +46,17 @@
       margin: 5px 0px 0px 0px;
     }
 
+    .container {
+      background-color: #fff;
+    }
+
     form {
       background-color: #fff;
       max-height: 460px;
       max-width: 300px;
       margin-top: 0px;
-      margin: 0px auto;
+      margin: 0;
+      padding-left: 10px;
       border-radius: 0px 4px;
       padding: 0;
       box-shadow: 2px 5px 10px #404040;
@@ -56,10 +66,19 @@
       padding: 10px 10px 10px 10px;
     }
 
+    .justify-content-between{
+      padding-left: 10px;
+    }
+
 
     .form-control {
       text-align: left;
-      margin-bottom: 20px;
+      padding-bottom: 10px;
+
+    }
+
+    label {
+      padding-left: 10px;
     }
 
     .form-control label {
@@ -76,6 +95,7 @@
       font-size: 18pt;
       font-family: inherit;
       padding: 10px;
+      margin: 0 auto;
       display: block;
       width: 95%;
     }
@@ -87,34 +107,33 @@
 
     button {
       background-color: #C1D63E;
+      margin: auto;
       border: none;
       border-radius: 4px;
       font-family: inherit;
       font-size: 21px;
       display: block;
-      width: 100%;
-      margin-top: 20px;
-      margin-bottom: 30px;
+      width: 80%;
       box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
 
 <body>
-
+<div class="container d-flex h-100"
   <form enctype="multipart/form-data" id="surveyform" style="margin:auto;">
     <div class="navbar">
       <h3>Arvig Chat Survey</h3>
     </div>
 
     <h4>Please rate your experience,<br>with 1=Least satisfied<br>and 5=Most satisfied</h4>
-    <div class="inputForm">
+    <!-- <div class="inputForm">
       <div class="form-control">
-        <!-- <input type="hidden" id="agentEmail" value=agentEmail /> -->
+        <!<input type="hidden" id="agentEmail" value=agentEmail /> -->
         <!-- <input type="text" id="agentEmail" value="first.last@arvig.com" /> -->
-        <input type="text" id="name" value="Beth" />
+        <!-- <input type="text" id="agentName" value="Beth" />
 
-      </div>
+      </div> -->
 
       <div class="form-control">
         <label>
@@ -164,62 +183,45 @@
               </div>
             </div>
           </div>
-          <button id="submit" onclick="surveyform()" value="submit">
+          <button id="submit" onclick="submitSurvey()" value="submit">
             Submit
           </button>
         </div>
   </form>
+</div>
 
   <script>
-
-  function form(){
-    $.ajax({
-      url:'https://sites.google.com/d/1QTTbJETfWcWmwZPqlkDA7AqrKKiLv5nE/p/1ATckXCBZ9whnjhhAtAjwgGgZ-bE8N07r/edit';
-      type: 'post';
-      data:$("#surveyform".serializeArray(),
-      success: function(){
-        alert("Survey submitted successfully. Thank you for your feedback!")
-      },
-      error: function(){
-        alert("There was an error!")
-      }
-    });
-  }
-
     // get agents email
     // var five9URL = "https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home";
-    // function queryHome() {
-    //   var name = "";
-    //   var email = "";
-    //   fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
-    //     .then(res => res.text())
-    //     .then((responseText) => {
-    //       //const query = document.getElementById("agent-screen-home");
-    //       const query = document.getElementsByClassName("message-container-agent");
-    //       const inner = query.getElementsByClassName("inner-container");
-    //       const header = inner.getElementsByClassName("message-header");
-    //       const agentName = header.getElementsByClassName("origin").textContent;
-    //       // const name = query.getElementsByClassName("name")[0].textContent;
-    //       // const email = query.getElementsByClassName("email")[0].textContent;
-    //       // console.log(name, email);
-    //     })
-    // }
-    // queryHome();
+    function queryHome() {
+      var agentName = "";
+      var email = "";
+      fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
+        .then(res => res.text())
+        .then((responseText) => {
+          const query = document.getElementById("message-container-agent");
+          // const agentInfo = document.getElementsByClassName("message-container-agent");
+          const agentName = query.getElementsByClassName("origin").textContent;
+          // const name = query.getElementsByClassName("name")[0].textContent;
+          // const email = query.getElementsByClassName("email")[0].textContent;
+          // console.log(name, email);
+        })
+    }
+    queryHome();
 
 
     function submitSurvey(agentName) {
       const form = document.getElementById('surveyform');
       var timeStamp = new Date();
-      var agentName = form.querySelector('input[name=agentName]');
+      var agentName;
       // var agentEmail = document.getElementById('agentEmail').value;
       var friendliness = form.querySelector('input[name=friendliness]:checked');
       var knowledge = form.querySelector('input[name=knowledge]:checked');
       var responsiveness = form.querySelector('input[name=responsiveness]:checked');
       var overall = form.querySelector('input[name=overall]:checked');
 
-      alert(timeStamp + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
+      console.log(timeStamp + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
     }
-
   </script>
 
 </body>
