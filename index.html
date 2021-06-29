@@ -210,19 +210,21 @@
     // queryHome();
 
 
-    function submitSurvey(agentName) {
+    function submitSurvey() {
       const form = document.getElementById('surveyform');
       const now = new Date();
-      var msec = Date.parse(now);
+      // var msec = Date.parse(now);
       var year = now.getFullYear();
       var month = now.getMonth() + 1;
       var day = now.getDate();
       var hour = now.getHours();
-      // var currentHours ='0' + hour.slice(-2);
       var minutes = now.getMinutes();
         minutes =('0' + minutes).slice(-2);
       var seconds = now.getSeconds();
         seconds =('0' + seconds).slice(-2);
+
+      const timeStamp = year + '/' +  month  + '/' + day  + ' ' + hour + ':' + minutes + ':'+seconds
+
       var agentName = 'Beth';
       // var agentEmail = document.getElementById('agentEmail').value;
       var friendliness = form.querySelector('input[name=friendliness]:checked');
@@ -230,7 +232,7 @@
       var responsiveness = form.querySelector('input[name=responsiveness]:checked');
       var overall = form.querySelector('input[name=overall]:checked');
 
-      console.log(year + '/' +  month  + '/' + day  + ' ' + hour + ':' + minutes + ':'+seconds + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
+      console.log(timeStamp + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
     }
   </script>
 
