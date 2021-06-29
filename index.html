@@ -210,8 +210,7 @@
     // queryHome();
 
 
-    function submitSurvey() {
-      const form = document.getElementById('surveyform');
+    function submitSurvey(timestamp) {
       const now = new Date();
       // var msec = Date.parse(now);
       var year = now.getFullYear();
@@ -223,8 +222,10 @@
       var seconds = now.getSeconds();
         seconds =('0' + seconds).slice(-2);
 
-      const timeStamp = year + '/' +  month  + '/' + day  + ' ' + hour + ':' + minutes + ':'+seconds
+      const timeStamp = year + '/' +  month  + '/' + day  + ' ' + hour + ':' + minutes + ':'+seconds;
 
+
+      const form = document.getElementById('surveyform');
       var agentName = 'Beth';
       // var agentEmail = document.getElementById('agentEmail').value;
       var friendliness = form.querySelector('input[name=friendliness]:checked');
@@ -232,9 +233,35 @@
       var responsiveness = form.querySelector('input[name=responsiveness]:checked');
       var overall = form.querySelector('input[name=overall]:checked');
 
-      console.log(timeStamp + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
-      alert("Survey submitted successfully. Thank you!")
-    }
+      console.log(timeStamp + ' ' + agentName + ' ' + friendliness.value);
+
+      var surveyData = {
+        timeStamp: timeStamp,
+        agentName: agentName,
+        friendliness: friendliness.value,
+        knowledge: knowledge.value,
+        responsiveness: responsiveness.value,
+        overall: overall.value
+      };
+
+      var url = 'https://docs.google.com/spreadsheets/d/1k_MRHZGBOA2eVUZotFmkASg2FSlxsQyOmGxVrvxScak/edit#gid=0';
+
+      fetch(url, {
+        method: 'POST',
+        cache: 'no-cache',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(surveyData)
+      })
+      .then(res => res.json())
+      {
+        console.log(surveyData);
+      };
+}
+
+
   </script>
 
 </body>
