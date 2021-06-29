@@ -127,13 +127,13 @@
     </div>
 
     <h4>Please rate your experience,<br>with 1=Least satisfied<br>and 5=Most satisfied</h4>
-    <!-- <div class="inputForm">
+    <div class="inputForm">
       <div class="form-control">
-        <!<input type="hidden" id="agentEmail" value=agentEmail /> -->
+        <!-- <!<input type="hidden" id="agentEmail" value=agentEmail /> -->
         <!-- <input type="text" id="agentEmail" value="first.last@arvig.com" /> -->
-        <!-- <input type="text" id="agentName" value="Beth" />
+        <!-- <input type="hidden" id="agentName" value="Beth" /> -->
 
-      </div> -->
+      </div>
 
       <div class="form-control">
         <label>
@@ -192,35 +192,45 @@
 
   <script>
     // get agents email
-    // var five9URL = "https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home";
-    function queryHome() {
-      var agentName = "";
-      var email = "";
-      fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
-        .then(res => res.text())
-        .then((responseText) => {
-          const query = document.getElementById("message-container-agent");
-          // const agentInfo = document.getElementsByClassName("message-container-agent");
-          const agentName = query.getElementsByClassName("origin").textContent;
-          // const name = query.getElementsByClassName("name")[0].textContent;
-          // const email = query.getElementsByClassName("email")[0].textContent;
-          // console.log(name, email);
-        })
-    }
-    queryHome();
+    // // var five9URL = "https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home";
+    // function queryHome() {
+    //   var agentName = "";
+    //   var email = "";
+    //   fetch("https://app-scl.five9.com/clients/agent/main.html?role=Agent#agent/home")
+    //     .then(res => res.text())
+    //     .then((responseText) => {
+    //       const query = document.getElementById("message-container-agent");
+    //       // const agentInfo = document.getElementsByClassName("message-container-agent");
+    //       const agentName = query.getElementsByClassName("origin").textContent;
+    //       // const name = query.getElementsByClassName("name")[0].textContent;
+    //       // const email = query.getElementsByClassName("email")[0].textContent;
+    //       // console.log(name, email);
+    //     })
+    // }
+    // queryHome();
 
 
     function submitSurvey(agentName) {
       const form = document.getElementById('surveyform');
-      var timeStamp = new Date();
-      var agentName;
+      const now = new Date();
+      var msec = Date.parse(now);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+      var hour = now.getHours();
+      // var currentHours ='0' + hour.slice(-2);
+      var minutes = now.getMinutes();
+        minutes =('0' + minutes).slice(-2);
+      var seconds = now.getSeconds();
+        seconds =('0' + seconds).slice(-2);
+      var agentName = 'Beth';
       // var agentEmail = document.getElementById('agentEmail').value;
       var friendliness = form.querySelector('input[name=friendliness]:checked');
       var knowledge = form.querySelector('input[name=knowledge]:checked');
       var responsiveness = form.querySelector('input[name=responsiveness]:checked');
       var overall = form.querySelector('input[name=overall]:checked');
 
-      console.log(timeStamp + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
+      console.log(year + '/' +  month  + '/' + day  + ' ' + hour + ':' + minutes + ':'+seconds + ' ' + agentName + ' ' + friendliness.value + ' ' + knowledge.value + ' ' + responsiveness.value + ' ' + overall.value);
     }
   </script>
 
