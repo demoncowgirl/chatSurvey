@@ -244,23 +244,53 @@
         overall: overall.value
       };
 
+
+
       const url = 'https://script.google.com/a/macros/arvig.com/s/AKfycbzgxeJYDhN2mFscmty00Sqeil_CgvlHXgjl4RWMgGR57eJb0A_pCZphJGH0hI399ZMiGg/exec';
 
       fetch(url, {
-        method: 'POST',
-        cache: 'no-cache',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(surveyData)
-      })
-      .then(res => res.json())
-        {
-        console.log(surveyData)
-      };
-      // .then();
+          method: 'POST',
+            cache: 'no-cache',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(surveyData)
+        }).then(function(resp) {
 
+          // Return the response as JSON
+          return resp.json();
+
+      }).then(function(data) {
+
+
+        console.log(data);
+
+        return data;
+
+      }).catch(function(err) {
+
+          // Log any errors
+          console.log('something went wrong')
+
+      });
+
+
+      // fetch(url, {
+    // method: 'POST',
+    // cache: 'no-cache',
+    // mode: 'no-cors',
+    // headers: {
+    // 'Content-Type': 'application/json',
+    // },
+    // body: JSON.stringify(surveyData)
+    // })
+    // // .then(res => json())
+    // .then(resp => json(surveyData))
+    // {
+    // console.log(resp)
+    // };
+    // // .then();
       }
 
 
