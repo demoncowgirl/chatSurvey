@@ -252,34 +252,34 @@
 
 
 
-      const url = 'https://script.google.com/a/macros/arvig.com/s/AKfycbwYtJgQw2-AMtLjd6WWsWSDTpVbGDn82fZljDlKv64mmT8Tf-cAyI9Fjr2axy1RYHpnHQ/exec';
-
-      fetch(url, {
-          method: 'POST',
-            cache: 'no-cache',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(surveyData)
-        }).then(function(resp) {
-
-          // Return the response as JSON
-          return resp.json();
-
-      }).then(function(data) {
-
-
-        console.log(data);
-
-        return data;
-
-      }).catch(function(err) {
-
-          // Log any errors
-          // console.log('Something went wrong!');
-
-      });
+      // const url = 'https://script.google.com/a/macros/arvig.com/s/AKfycbwYtJgQw2-AMtLjd6WWsWSDTpVbGDn82fZljDlKv64mmT8Tf-cAyI9Fjr2axy1RYHpnHQ/exec';
+      //
+      // fetch(url, {
+      //     method: 'POST',
+      //       cache: 'no-cache',
+      //       mode: 'no-cors',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify(surveyData)
+      //   }).then(function(resp) {
+      //
+      //     // Return the response as JSON
+      //     return resp.json();
+      //
+      // }).then(function(data) {
+      //
+      //
+      //   console.log(data);
+      //
+      //   return data;
+      //
+      // }).catch(function(err) {
+      //
+      //     // Log any errors
+      //     // console.log('Something went wrong!');
+      //
+      // });
 
 }
 
